@@ -32,9 +32,14 @@ try:
 
     a = tf.test.is_built_with_cuda()  # 判断CUDA是否可以用
     # b = tf.test.is_gpu_available(cuda_only=False,min_cuda_compute_capability=None)  # 判断GPU是否可以用
-    b = tf.config.list_physical_devices('GPU')
+    if tf.config.list_physical_devices('GPU'):
+        b = True
+    else:
+        b = False
+
     print("tensorflow：CUDA是否可用：\t",a)
     print("tensorflow：GPU是否可用：\t",b)
+    print("tensorflow：GPU详细信息：：\t",tf.config.list_physical_devices('GPU'))
 except Exception as e:
     print(e)
 
