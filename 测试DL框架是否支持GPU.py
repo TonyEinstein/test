@@ -44,7 +44,10 @@ try:
         b = False
     print("tensorflow：可用的GPU数量: \t", len(tf.config.experimental.list_physical_devices('GPU')))
     print("tensorflow：CUDA是否可用：\t",tf.test.is_built_with_cuda())
-    print("tensorflow：CUDNN是否可用：\t",tf.test.is_built_with_cudnn())
+    try:
+        print("tensorflow：CUDNN是否可用：\t", tf.test.is_built_with_cudnn())
+    except Exception as e2:
+        print(e2)
     print("tensorflow：GPU是否可用：\t",b)
     print("tensorflow：GPU详细信息：：\t",op)
 except Exception as e:
